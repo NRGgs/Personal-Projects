@@ -17,7 +17,7 @@ bool	is_space(char c)
 }
 
 
-bool	valid_year(char *buffer, t_data *data)
+bool	valid_year(char *buffer, t_calendar *calendar)
 {
 	if (count_length(buffer) > 9)
 		return (false);
@@ -32,13 +32,13 @@ bool	valid_year(char *buffer, t_data *data)
 			sum = (sum * 10) + (buffer[i] - 48);
 		i++;
 	}
-	if (sum > MAX_YEAR)
+	if (sum > MAX_YEAR && sum > 0)
 		return (false);
-	data->year = sum;
+	calendar->year = sum;
 	return (true);
 }
 
-bool	valid_month(char *buffer, t_data *data)
+bool	valid_month(char *buffer, t_calendar *calendar)
 {
 	if (count_length(buffer) > 2)
 		return (false);
@@ -53,8 +53,8 @@ bool	valid_month(char *buffer, t_data *data)
 			sum = (sum * 10) + (buffer[i] - 48);
 		i++;
 	}
-	if (sum > MAX_MONTH)
+	if (sum > MAX_MONTH && sum > 0)
 		return (false);
-	data->month = sum;
+	calendar->month = sum;
 	return (true);
 }

@@ -1,15 +1,52 @@
 #include "calendar.h"
 
-t_data	*allocate_data(t_data *data)
+t_calendar	*allocate_calendar(t_calendar *calendar)
 {
-	data = malloc(sizeof(t_data));
-	if (data == NULL)
+	calendar = malloc(sizeof(t_calendar));
+	if (calendar == NULL)
 		return (NULL);
 
-	return (data);
+	calendar->head = malloc(sizeof(t_node));
+	if (calendar->head == NULL)
+	{
+		free(calendar);
+		return (NULL);
+	}
+
+	return (calendar);
 }
 
-void	free_data(t_data *data)
+void		free_calendar(t_calendar *calendar)
 {
-	free(data);
+	free(calendar->head);
+	free(calendar);
+}
+
+t_node		*allocate_node(t_node *node)
+{
+	node = malloc(sizeof(t_node));
+	if (node == NULL)
+		return (NULL);
+
+	node->day = EMPTY;
+	node->next = NULL;
+	return (node);
+}
+
+void		free_node(t_node *node)
+{
+	free(node);
+}
+
+void		free_list(t_node *head)
+{
+	t_node	*current = head;
+
+	while (current->next != NULL)
+	{
+		t_node	*temp = current;
+		current = current->next;
+		free(temp);
+	}
+	free(current);
 }

@@ -13,3 +13,14 @@ int		count_length(char *str)
 	}
 	return (count);
 }
+
+bool	stringcompare(char *a, char *b)
+{
+	int i = 0;
+	while (a[i] == b[i] && b[i] != '\0')
+		i++;
+	if (a[i] != b[i])
+		return (false);
+	else
+		return (true);
+}

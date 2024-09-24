@@ -16,25 +16,56 @@
 #define VALID 1
 #define ERROR -1
 
+#define JANUARY 1
+#define FEBRUARY 2
+#define MARCH 3
+#define APRIL 4
+#define MAY 5
+#define JUNE 6
+#define JULY 7
+#define AUGUST 8
+#define SEPTEMBER 9
+#define OCTOBER 10
+#define NOVEMBER 11
+#define DECEMBER 12
 
-typedef struct s_data
+#define MONDAY 0
+#define SUNDAY 6
+#define EMPTY 7
+
+typedef struct s_node
 {
-	int	year;
-	int	month;
-} t_data;
+	int				nth_day;
+	int				day;
+	struct s_node	*next;
+} t_node;
 
-t_data	*allocate_data(t_data *data);
-void	free_data(t_data *data);
+typedef struct s_calendar
+{
+	int		year;
+	int		month;
+	t_node	*head;
+} t_calendar;
 
-int		ask_input(t_data *data);
+t_calendar	*allocate_calendar(t_calendar *calendar);
+void		free_calendar(t_calendar *calendar);
+t_node		*allocate_node(t_node *node);
+void		free_node(t_node *node);
+void		free_list(t_node *head);
 
-int		count_length(char *str);
-char	*copy_string(char *source, char *destination);
+int			ask_input(t_calendar *calendar);
 
-bool	is_digit(char c);
-bool	is_space(char c);
+int			count_length(char *str);
+bool		stringcompare(char *a, char *b);
 
-bool	valid_year(char *buffer, t_data *data);
-bool	valid_month(char *buffer, t_data *data);
+bool		is_digit(char c);
+bool		is_space(char c);
+
+bool		valid_year(char *buffer, t_calendar *calendar);
+bool		valid_month(char *buffer, t_calendar *calendar);
+
+t_calendar	*create_month(t_calendar *calendar);
+
+void		print_month(t_calendar *calendar);
 
 #endif

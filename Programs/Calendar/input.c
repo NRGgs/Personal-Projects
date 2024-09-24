@@ -1,43 +1,43 @@
 #include "calendar.h"
 
-int	get_year(t_data *data)
+int		get_year(t_calendar *calendar)
 {
-	char buffer[1000];
+	char buffer[MAX_BUFFER];
 	printf("%s", ASK_YEAR_MSG);
 	if (read(1, buffer, MAX_BUFFER) == 0)
 		return (ERROR);
-	if (valid_year(buffer, data) == false)
+	if (valid_year(buffer, calendar) == false)
 		return (ERROR);
 
-	return (data->year);
+	return (calendar->year);
 }
 
-int	get_month(t_data *data)
+int		get_month(t_calendar *calendar)
 {
-	char buffer[1000];
+	char buffer[MAX_BUFFER];
 	printf("%s", ASK_MONTH_MSG);
 	if (read(1, buffer, MAX_BUFFER) == 0)
 		return (ERROR);
-	if (valid_month(buffer, data) == false)
+	if (valid_month(buffer, calendar) == false)
 		return (ERROR);
 
-	return (data->month);
+	return (calendar->month);
 }
 
 /* 	Ask what month/year to print.
-	If only year is given, print entire year.
+	If only a year is given, print the entire year.
 */
-int		ask_input(t_data *data)
+int		ask_input(t_calendar *calendar)
 {
 	do
 	{
-		data->year = get_year(data);
-	} while (data->year == ERROR);
+		calendar->year = get_year(calendar);
+	} while (calendar->year == ERROR);
 
 	do
 	{
-		data->month = get_month(data);
-	} while (data->month == ERROR);
+		calendar->month = get_month(calendar);
+	} while (calendar->month == ERROR);
 
 	return (VALID);
 }

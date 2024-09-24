@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -g
 
 # Source files and headers
-SRCS = check.c input.c main.c memory.c string.c
+SRCS = check.c input.c main.c memory.c string.c print.c calendar.c
 HEADERS = calendar.h
 OBJS = $(SRCS:.c=.o)
 
