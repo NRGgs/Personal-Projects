@@ -5,7 +5,6 @@ void	print_month(t_calendar *calendar)
 	t_node	*today = calendar->head;
 	int		column = 0;
 
-	system("clear");
 	printf("%d/%d\n",calendar->month, calendar->year);
 	printf("Mon\tTue\tWed\tThu\tFri\tSat\tSun\n");
 

@@ -9,6 +9,20 @@ void	start_screen(void)
 	getchar();
 }
 
+void	full_year(t_calendar *calendar)
+{
+	int i = 1;
+	while (i <= MAX_MONTH)
+	{
+		calendar->month = i;
+		create_month(calendar);
+		print_month(calendar);
+		if (i < MAX_MONTH)
+			printf("\n");
+		i++;
+	}
+}
+
 int		main(void)
 {
 	t_calendar	*calendar = NULL;
@@ -24,8 +38,14 @@ int		main(void)
 		free_calendar(calendar);
 		return (ERROR);
 	}
-	create_month(calendar);
-	print_month(calendar);
+	system("clear");
+	if (calendar->month == 0)
+		full_year(calendar);
+	else
+	{
+		create_month(calendar);
+		print_month(calendar);
+	}
 
 	free_calendar(calendar);
 	return (0);
